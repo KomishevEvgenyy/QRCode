@@ -1,3 +1,9 @@
 from django.shortcuts import render
+from django.views.generic.edit import FormView #ознакомиться с моделей FormView
 
-# Create your views here.
+from .forms import FeedbackForm
+
+
+class FeedbackView(FormView):
+    form_class = FeedbackForm
+    template_name = "cervicedesk/qr.html"
