@@ -2,7 +2,7 @@ from django.db import models
 
 
 class QRCode(models.Model):
-    pass
+    image = models.ImageField(upload_to="")
 
 
 class QRZone(models.Model):

@@ -1,0 +1,12 @@
+{% extends 'cervicedesk/base.html' %}
+{% block content %}
+
+    {% for qrcode in object_list %}
+        <img src="{{qrcode.image.url}}", width=”100px”/><br/>
+        <p>{{ qrcode.name }}</p><br/>
+    {% empty %}
+        <p>Not found QR_Code</p>
+    {% endfor %}
+
+
+{% endblock content %}
