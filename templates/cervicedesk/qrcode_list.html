@@ -1,12 +1,17 @@
 {% extends 'cervicedesk/base.html' %}
+{% load qr_code %}
 {% block content %}
-
+<ol>
     {% for qrcode in object_list %}
-        <img src="{{qrcode.image.url}}", width=”100px”/><br/>
-        <p>{{ qrcode.name }}</p><br/>
+        <li>
+            {% qr_from_text 'hi' size=8 version=8 %}
+            <img src="{{qrcode.image.url}}", width=”100px”, height="100px">
+            <p>{{ qrcode.name }}</p>
+            <p>{{qrcode.unique_id}}</p>
+        </li>
     {% empty %}
         <p>Not found QR_Code</p>
     {% endfor %}
-
+</ol>
 
 {% endblock content %}

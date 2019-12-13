@@ -3,9 +3,9 @@ from django.views.generic.edit import FormView #ознакомиться с мо
 from django.urls import reverse_lazy
 from django.views.generic.list import ListView
 
-
 from .forms import FeedbackForm
 from .models import QRCode
+
 
 class FeedbackView(FormView):
     form_class = FeedbackForm

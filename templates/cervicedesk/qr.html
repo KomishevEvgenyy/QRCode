@@ -3,22 +3,39 @@
 
 {% load staticfiles %}
 
-    <form class="form-signin" method="Post">
-		<div><img src="{% static 'images\picture.jpg' %}", alt="", width='100px', height="100px"/></div>
-        {% csrf_token %}
-        <div class="form-label-group">
-            {{form.text}}
-            <label for="id_text"></label>
-		</div>
-		<div class="form-label-group">
-		    {{form.name}}
-            <label for="id_name">Имя</label>
-		</div>
-		<div class="form-label-group">
-		    {{form.contact}}
-            <label for="id_contact">Контакты</label>
-		</div>
-		<button type="submit">Отправить</button>
-    <form>
 
-{% endblock %}
+    <form method="post" class="form-signin">{% csrf_token %}
+        <div><img src="{% static 'images\picture.jpg' %}", alt="", width='100px', height="100px"/></div>
+          <div class="text-center mb-4">
+            <img class="mb-4" src="{static 'url'}" alt="" width="150">
+            <h1 class="h3 mb-3 font-weight-normal">Есть что сказать?</h1>
+            <p>Опиши всё, что думаешь</p>
+          </div>
+        <div class="form-label-group">
+            {{ form.text }}
+            {{ form.text.errors }}
+        </div>
+
+        <div class="custom-control custom-switch">
+          <input type="checkbox" class="custom-control-input" id="switch" onclick="if(this.checked){document.getElementById('hidden').style.display='block';} else {document.getElementById('hidden').style.display='none';}">
+          <label class="custom-control-label" for="switch">Оставить контакты</label>
+        </div>
+        <div id="hidden" style="display: none;">
+            <div class="form-label-group">
+                {{ form.name }}
+                {{ form.name.errors }}
+                <label for="id_name">Имя</label>
+            </div>
+
+            <div class="form-label-group">
+                {{ form.contact }}
+                {{ form.contact.errors }}
+                <label for="id_contact">Контакт</label>
+            </div>
+        </div>
+        <button class="btn btn-lg btn-secondary btn-block" type="submit">Отправить</button>
+
+        <p class="mt-5 mb-3 text-muted text-center">политика конфиденциальности</p>
+    </form>
+
+{% endblock content%}
